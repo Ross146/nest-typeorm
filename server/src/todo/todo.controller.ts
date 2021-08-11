@@ -1,9 +1,9 @@
 import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common';
 import {TodoService} from "./todo.service";
-import {TodoDto} from "./dto/ToDo.dto";
-import {TodoCreateDto} from "./dto/ToDoCreate.dto";
-import {TodoListDto} from "./dto/ToDoList.dto";
-import {toPromise} from "../shared/utils";
+import {TodoDto} from "./dto/todo.dto";
+import {TodoCreateDto} from "./dto/todoCreate.dto";
+import {TodoListDto} from "./dto/todoList.dto";
+import {toPromise} from "@shared/utils";
 
 @Controller("api/todos")
 export class TodoController {
@@ -34,7 +34,7 @@ export class TodoController {
   }
 
   @Delete(":id")
-  async destroy(@Param("id") id: string): Promise<void> {
+  async destroy(@Param("id") id: string): Promise<TodoDto> {
     return await this.todoService.destroyTodo(id);
   }
 }

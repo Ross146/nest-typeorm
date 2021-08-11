@@ -1,9 +1,17 @@
-import { Module } from '@nestjs/common';
-import { TodoModule } from './todo/todo.module';
+import {DynamicModule, Module} from '@nestjs/common';
+import { TodoModule } from '@todo/todo.module';
+import {ConnectionOptions} from "typeorm";
+import {TypeOrmModule} from "@nestjs/typeorm";
 
-@Module({
-  imports: [TodoModule],
-  controllers: [],
-  providers: [],
-})
-export class AppModule {}
+@Module({})
+export class AppModule {
+  static forRoot(
+    connOptions: ConnectionOptions): DynamicModule {
+    return {
+      module: AppModule,
+      controllers: [],
+      imports: [TodoModule, TypeOrmModule.forRoot(connOptions)],
+      providers: [],
+    };
+  }
+}

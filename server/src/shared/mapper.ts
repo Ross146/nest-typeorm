@@ -1,9 +1,9 @@
-import {TodoEntity} from "../todo/entity/ToDo.entity";
-import {TodoDto} from "../todo/dto/ToDo.dto";
+import {TodoEntity} from "@todo/entity/todo.entity";
+import {TodoDto} from "@todo/dto/todo.dto";
 
 export const toTodoDto = (data: TodoEntity): TodoDto => {
-  const { id, name, description } = data;
+  const { id, name, description, createdOn } = data;
 
-  return  { id, name, description};
+  return  { id, name, description, createdOn};
 
 };
