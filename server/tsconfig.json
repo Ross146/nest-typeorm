@@ -12,6 +12,7 @@
     "lib": ["es2015"],
     "paths": {
       "@todo/*": ["src/todo/*"],
+      "@user/*": ["src/user/*"],
       "@shared/*": ["src/shared/*"]
     }
   },
