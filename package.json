@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@angular/cli": "^12.2.1",
     "@nestjs/cli": "^8.1.1"
   }
 }
