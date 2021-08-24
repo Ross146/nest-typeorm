@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { switchMap, delay, map, startWith } from 'rxjs/operators';
 import { DoAction } from 'projects/app-common/src/public-api';
 import { Todo } from '../../models/todo.model';
 import { TodoService } from '../../services/todo.service';
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   <lib-todo-list [todos]="todos$ | async" (action)="doAction($event)"></lib-todo-list>`
 })
 export class TodoComponent implements OnInit {
-  public todos$: Observable<Todo[]> | null = null;
+  public todos$: Observable<{loading: boolean, value: Todo[]}> = new Observable();
   private refresh$ = new BehaviorSubject<any>('');
 
   constructor(
@@ -21,7 +21,12 @@ export class TodoComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.todos$ = this.refresh$.pipe(switchMap(() => this.todoService.findAll()));
+    this.todos$ = this.refresh$.pipe(
+      delay(2000),
+      switchMap(() => this.todoService.findAll()),
+      map((value: any) => ({ loading: false, value })),
+      startWith({ loading: true, value: [] }),
+    );
   }
 
   public doAction({ type, payload }: DoAction): void {

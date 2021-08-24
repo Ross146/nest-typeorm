@@ -5,24 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {
   AuthModule,
-  jwtInterceptorProvider,
-  errorInterceptorProvider
 } from 'projects/auth/src/public-api';
 import { MasterComponent } from './shared/master/master.component';
-import { HomeComponent } from './shared/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppCommonModule } from 'projects/app-common/src/public-api';
 
 @NgModule({
-  declarations: [AppComponent, MasterComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AuthModule,
     NgbModule,
+    AuthModule,
     AppCommonModule
   ],
-  providers: [jwtInterceptorProvider, errorInterceptorProvider],
+  declarations: [AppComponent, MasterComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

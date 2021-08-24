@@ -5,11 +5,16 @@ import { DoAction } from 'projects/app-common/src/public-api';
 @Component({
   selector: 'lib-todo-list',
   template: `
-    <div *ngIf="!todos?.length; else show">No todos yet!</div>
+    <div *ngIf="todos?.loading; then loading else show">No todos yet!</div>
+
+    <ng-template #loading>
+      No todos yet!
+    </ng-template>
+
     <ng-template #show>
       <div class="list-group">
         <div
-          *ngFor="let todo of todos; let i = index; trackBy: trackByFn"
+          *ngFor="let todo of todos?.value; let i = index; trackBy: trackByFn"
           class="todos"
         >
           <div class="action">
@@ -56,7 +61,7 @@ import { DoAction } from 'projects/app-common/src/public-api';
 })
 export class TodoListComponent implements OnInit {
   @Input()
-  public todos: Todo[] | null = null;
+  public todos: {loading: boolean, value: Todo[]} | null = null;
 
   @Output()
   public action: EventEmitter<DoAction> = new EventEmitter();
