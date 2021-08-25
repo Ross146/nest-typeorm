@@ -3,6 +3,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AppCommonModule } from 'projects/app-common/src/public-api';
 import {jwtInterceptorProvider} from "./services/jwt-interceptor";
 import {errorInterceptorProvider} from "./services/error-interceptor";
+import {Logger} from "../../../../src/app/services/logger.service";
 
 @NgModule({
   declarations: [
@@ -14,6 +15,6 @@ import {errorInterceptorProvider} from "./services/error-interceptor";
   exports: [
     LoginComponent
   ],
-  providers: [jwtInterceptorProvider, errorInterceptorProvider],
+  providers: [jwtInterceptorProvider, errorInterceptorProvider, Logger],
 })
 export class AuthModule { }

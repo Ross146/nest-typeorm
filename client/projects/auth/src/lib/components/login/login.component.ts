@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { AuthService } from '../../services/auth.service';
+import {Logger} from "../../../../../../src/app/services/logger.service";
 
 @Component({
   templateUrl: 'login.component.html',
@@ -14,7 +15,13 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   error: string;
 
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private authService: AuthService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService,
+    private loggerService: Logger
+  ) {
     this.submitted = false;
     this.error = '';
     this.returnUrl = '/';
@@ -25,7 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.loggerService.log('hello')
     // reset login status
     this.authService.logout();
 

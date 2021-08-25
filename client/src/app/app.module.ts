@@ -9,6 +9,7 @@ import {
 import { MasterComponent } from './shared/master/master.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppCommonModule } from 'projects/app-common/src/public-api';
+import {LoggerService} from "./services/logger.service";
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { AppCommonModule } from 'projects/app-common/src/public-api';
     AppCommonModule
   ],
   declarations: [AppComponent, MasterComponent],
+  // providers: [LoggerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
